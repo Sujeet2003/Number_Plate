@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Number Plate Detection</title>
+    <style>
+        * {
+            background-color: antiquewhite;
+        }
+
+        #result {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #video {
+            width: 640px;
+            height: 480px;
+        }
+
+        #plate-image {
+            margin-top: 20px;
+            margin-left: 30px;
+        }
+
+        #plate-text{
+            text-align: center;
+            font-size: 25px;
+            color: red;
+            border: 2px solid red;
+            margin-left: 30px;
+            background-color: black;
+            color: yellow;
+            padding: 5px;
+        }
+
+        h1 {
+            text-align: center;
+            font-family: monospace;
+            font-size: 30px;
+        }
+
+        #video {
+            border: 2px solid black;
+        }
+    </style>
+    <script>
+        function fetchPlateText() {
+            fetch('/get_plate_text/')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('plate-text').innerText = data;
+                });
+        }
+
+        function fetchPlateImage() {
+            fetch('/get_plate_image/')
+                .then(response => {
+                    if (response.ok) {
+                        document.getElementById('plate-image').src = response.url;
+                    }
+                });
+        }
+
+        setInterval(fetchPlateText, 2000);
+        setInterval(fetchPlateImage, 2000);
+    </script>
+</head>
+
+<body>
+    <h1>Number Plate Detection</h1>
+    <div id="result">
+        <img id="video" src="{% url 'video_feed' %}" alt="Camera is opening, please wait...">
+        <div>
+            <p id="plate-text">Loading...</p>
+            <img id="plate-image" src="static/scanned_img_1.jpg" alt="Number Plate Image">
+        </div>
+    </div>
+</body>
+
+</html>
