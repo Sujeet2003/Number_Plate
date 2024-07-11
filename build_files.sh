@@ -1,7 +1,3 @@
-# pip install -r requirements.txt
-# python3.11.3 manage.py collectstatic
-
-
 echo "BUILD START"
 
 # create a virtual environment named 'venv' if it doesn't already exist
@@ -14,9 +10,6 @@ source venv/bin/activate
 pip install -r requirements.txt
 
 # collect static files using the Python interpreter from venv
-python manage.py collectstatic --noinput
+python3.9 manage.py collectstatic --noinput
 
 echo "BUILD END"
-
-# [optional] Start the application here 
-# python manage.py runserver

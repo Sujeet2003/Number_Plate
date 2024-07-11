@@ -28,5 +28,7 @@ urlpatterns = [
     path('get_plate_text/', views.get_plate_text, name='get_plate_text'),
     path('get_plate_image/', views.get_plate_image, name='get_plate_image'),
 ]
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
