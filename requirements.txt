@@ -15,7 +15,7 @@ ninja
 numpy
 opencv-python
 opencv-python-headless
-packaging1
+packaging
 pillow
 pyclipper
 python-bidi
